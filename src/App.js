@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 
 const apiEndPoint = 'https://jsonplaceholder.typicode.com/posts';
@@ -49,7 +51,7 @@ class App extends Component {
     try {
       await axios.delete(apiEndPoint + '/' + post.id);
     } catch (ex) {
-      alert('Somthing error occured');
+      toast.error('Somthing error occured');
       this.setState({ posts: originalPosts });
     }
 
@@ -59,6 +61,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        <ToastContainer />
+
         <button className='btn btn-primary' onClick={this.handleAdd}>
           Add
         </button>
